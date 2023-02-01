@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../images/white-wood-texture-background-presentations-space-text-composition-art-image-website-magazine-graphic-design-139423918.jpg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
+}
+
+header {
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+h1 {
+    text-align: center;
+    color: linear-gradient(90deg, rgba(0,0,0,1) 9%, rgba(0,250,225,1) 14%, rgba(255,255,255,1) 16%, rgba(0,255,242,1) 18%, rgba(2,5,88,1) 30%);;
+    font-size: 5em;
+    font-style: italic;
+    font-family: monospace;
+    padding: 0.7em;
+    text-shadow: 3px 2px 15px white;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Josefin Sans", "sans-serif";
+    font-weight: bold;
+    color: white;
+    font-size: 3rem;
+    margin-top: 50px;
+    box-shadow: 10px 10px 10px gray;
+    text-shadow: 3px 3px 5px black;
+}
+
+.start {
+ display: flex;   
+ justify-content: center;
+ margin: 50px;
+}
+
+.buttonStart {
+    width: 110px;
+    height: 30px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px black;
+}
+
+.keyboard {
+    transform: rotateX(35deg);
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.keyboard__row {
+    display: inline-block;
+    height: 3em;
+    margin: 0.2em;
+}
+
+.keyboard__row--h1 {
+    height: 1.7em;
+    line-height: 1.4em;
+}
+
+.keyboard__row--h3 {
+    height: 3.3em;
+}
+
+.keyboard__row > * {
+    position: relative;
+    background: #333;
+    text-align: center;
+    color: #eee;
+    float: left;
+    border-radius: 0.3em;
+    margin: 0.2em;
+    padding: 0.2em;
+    width: 3.3em;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    -webkit-user-select: none;
+    border: 1px solid #444;
+    box-shadow: 0 0.2em 0 0.05em #222;
+    border-bottom-color: #555;
+}
+
+.keyboard__row--h1 > div {
+    width: 3.5em;
+}
+
+.keyboard__row > div[data-pressed],
+.keyboard__row > div:active {
+    background: #2a2a2a;
+    color: #aaa;
+    position: relative;
+    top: 0.2em;
+    box-shadow: 0 0 0 0.05em black;
+}
+
+.key--w3 {
+    width: 4.6em;
+}
+
+.key--w4 {
+    width: 6em;
+}
+
+.key--w5 {
+    width: 6.5em;
+}
+
+.key--w6 {
+    width: 8.3em;
+}
+
+.key--space {
+    width: 18em;
+}
+
+.key--double > * {
+    padding-top: 0.1em;
+}
+
+.key--letter {
+    line-height: 2.8em;
+}
+
+.key--bottom-left > * {
+    position: absolute;
+    text-align: left;
+    bottom: 0.4em;
+    left: 0.4em;
+}
+
+.key--bottom-right > * {
+    position: absolute;
+    text-align: right;
+    bottom: 0.4em;
+    right: 0.4em;
+}
+
+.key--fn > * {
+    font-size: 0.6em;
+    line-height: 1em;
+    padding-top: 1.2em;
+    padding-right: 0.2em;
+    text-align: right;
+    float: right;
+}
+
+.key--word > * {
+    font-size: 0.8em;
+}
+
+.key--arrow--tall > *,
+.key--arrow > * {
+    font-size: 0.5em;
+    line-height: 3em;
+}
+
+.key--arrow {
+    height: 1.8em;
+    margin-top: 1.7em;
+    line-height: 0.5em;
+}
+
+.key--arrow--tall > * {
+    padding-top: 0.2em;
+}
+
+.keyboard > .keyboard__row {
+    text-align: center;
+}
