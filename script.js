@@ -79,11 +79,15 @@ window.addEventListener('resize', function (e) {
 });
 size();
 
-let words = ["Chocolat", "Carotte", "Kiwi", "Salade"];
+let words = ["Kiwi", "Gant", "Gris", "Gare", "Funk", "Flop", "flou", "Lait", "Jour", "Lave", "Husky", "Hobby"];
 let startButton = document.querySelector(".buttonStart")
 let currentWord = ""
 let buttonReload = document.querySelector(".reloadButton")
 let index = 0
+let right = new Audio('./sound/right.mp3');
+let wrong = new Audio('./sound/wrong.mp3')
+let win = new Audio('./sound/win.mp3')
+
 
 startButton.addEventListener('click', startGame)
 buttonReload.addEventListener('click', pageReload)
@@ -125,9 +129,13 @@ function checkLetter(key) {
         console.log('Nice')
         console.log(`index = ${index}`)
         index ++
+        document.querySelector(".points").textContent ++
+    } else {
+        document.querySelector(".points").textContent --
+        wrong.play();
     }
     if (index === currentWord.length) {
-
+        right.play();
         getWord()
         index = 0
     }
@@ -136,6 +144,7 @@ function checkLetter(key) {
 
 function winner() {
     if (currentWord === undefined){
+    win.play();
      document.querySelector(".wordToType").textContent = "YOU ARE THE WINNER"
     }
 }
