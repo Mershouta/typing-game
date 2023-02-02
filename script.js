@@ -1,84 +1,149 @@
-// function getKey (e) {
-//     let location = e.location;
-//     let selector;
-//     if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-//         selector = ['[data-key="' + e.keyCode + '-R"]']
-//     } else {
-//         let code = e.keyCode || e.which;
-//         selector = [
-//             '[data-key="' + code + '"]',
-//             '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]'
-//         ].join(',');
-//     }
-//     return document.querySelector(selector);
-// }
+function getKey (e) {
+    let location = e.location;
+    let selector;
+    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+        selector = ['[data-key="' + e.keyCode + '-R"]']
+    } else {
+        let code = e.keyCode || e.which;
+        selector = [
+            '[data-key="' + code + '"]',
+            '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]'
+        ].join(',');
+    }
+    return document.querySelector(selector);
+}
 
-// function pressKey (char) {
-//     let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
-//     if (!key) {
-//         return console.warn('No key for', char);
-//     }
-//     key.setAttribute('data-pressed', 'on');
-//     setTimeout(function () {
-//         key.removeAttribute('data-pressed');
-//     }, 200);
-// }
 
-// let h1 = document.querySelector('h1');
-// let originalQueue = h1.innerHTML;
-// let queue = h1.innerHTML;
 
-// function next () {
-//     let c = queue[0];
-//     queue = queue.slice(1);
-//     h1.innerHTML = originalQueue.slice(0, originalQueue.length - queue.length);
-//     pressKey(c);
-//     if (queue.length) {
-//         setTimeout(next, Math.random() * 200 + 50);
-//     }
-// }
+function pressKey (char) {
+    let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
+    if (!key) {
+        return console.warn('No key for', char);
+    }
+    key.setAttribute('data-pressed', 'on');
+    setTimeout(function () {
+        key.removeAttribute('data-pressed');
+    }, 200);
+}
 
-// h1.innerHTML = "&nbsp;";
-// setTimeout(next, 500);
+let h1 = document.querySelector('h1');
+let originalQueue = h1.innerHTML;
+let queue = h1.innerHTML;
 
-// document.body.addEventListener('keydown', function (e) {
-//     let key = getKey(e);
-//     if (!key) {
-//         return console.warn('No key for', e.keyCode);
-//     }
+function next () {
+    let c = queue[0];
+    queue = queue.slice(1);
+    h1.innerHTML = originalQueue.slice(0, originalQueue.length - queue.length);
+    pressKey(c);
+    if (queue.length) {
+        setTimeout(next, Math.random() * 200 + 50);
+    }
+}
 
-//     key.setAttribute('data-pressed', 'on');
-// });
+h1.innerHTML = "&nbsp;";
+setTimeout(next, 500);
 
-// document.body.addEventListener('keyup', function (e) {
-//     let key = getKey(e);
-//     key && key.removeAttribute('data-pressed');
-// });
+document.body.addEventListener('keydown', function (e) {
+    let key = getKey(e);
+    checkLetter(key)
+    console.log(key.textContent)
+    if (!key) {
+        return console.warn('No key for', e.keyCode);
+    }
 
-// function size () {
-//     let size = keyboard.parentNode.clientWidth / 90;
-//     keyboard.style.fontSize = size + 'px';
-// }
+    key.setAttribute('data-pressed', 'on');
+});
 
-// let keyboard = document.querySelector('.keyboard');
-// window.addEventListener('resize', function (e) {
-//     size();
-// });
-// size();
+document.querySelectorAll('.key--letter').forEach(key => {
+    key.addEventListener('click', function (e) {
+    let key = e.target;
+    console.log(key.textContent)
+   
+});
+})
+
+
+document.body.addEventListener('keyup', function (e) {
+    let key = getKey(e);
+    key && key.removeAttribute('data-pressed');
+});
+
+function size () {
+    let size = keyboard.parentNode.clientWidth / 90;
+    keyboard.style.fontSize = size + 'px';
+}
+
+let keyboard = document.querySelector('.keyboard');
+window.addEventListener('resize', function (e) {
+    size();
+});
+size();
 
 let words = ["Chocolat", "Carotte", "Kiwi", "Salade"];
 let startButton = document.querySelector(".buttonStart")
-console.log(startButton)
+let currentWord = ""
+let buttonReload = document.querySelector(".reloadButton")
+let index = 0
 
-startButton.onclick = () => {startGame()}
+startButton.addEventListener('click', startGame)
+buttonReload.addEventListener('click', pageReload)
 
 function startGame() {
+    let title = document.getElementById("reflexest");
+    
+    if (title.style.display === "none") {
+        title.style.display = "block";
+      } else {
+        title.style.display = "none";
+      }
+      console.log("START!")
+
+      getWord()
+    
+}
+
+function getWord() {
     let random = 0
      random = Math.random() * words.length
+
     if (random > words.length) {
         random = 0
     }
-    let currentWord = words[Math.floor(random)]
+
+    currentWord = words[Math.floor(random)]
     console.log(currentWord)
-    return currentWord
+    words.splice(random, 1)
+    console.log(words)
+    document.querySelector(".wordToType").textContent = currentWord
+
+    return currentWord   
 }
+
+function checkLetter(key) {
+    let pressedLetter = key.textContent
+    if (currentWord[index].toUpperCase() === pressedLetter){
+        console.log('Nice')
+        console.log(`index = ${index}`)
+        index ++
+    }
+    if (index === currentWord.length) {
+
+        getWord()
+        index = 0
+    }
+    winner()
+}
+
+function winner() {
+    if (currentWord === undefined){
+     document.querySelector(".wordToType").textContent = "YOU ARE THE WINNER"
+    }
+}
+
+
+
+
+function pageReload() {
+    window.location.reload();
+}
+
