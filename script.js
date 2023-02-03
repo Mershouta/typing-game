@@ -79,10 +79,11 @@ window.addEventListener('resize', function (e) {
 });
 size();
 
-let words = ["Kiwi", "Gant", "Gris", "Gare", "Funk", "Flop", "flou", "Lait", "Jour", "Lave", "Husky", "Hobby"];
+let words = ["Sunlight", "Socket", "Grey", "Station", "Funk", "Cat", "Blurry", "Huge", "Incredible", "Borderline", "Husky", "Hexakosioihexekontahexaphobia", "A", "Attention", "Warning", "Lightning", "Reflexest"];
 let startButton = document.querySelector(".buttonStart")
 let currentWord = ""
 let buttonReload = document.querySelector(".reloadButton")
+let levelButton = document.querySelector(".nextLevel")
 let index = 0
 let right = new Audio('./sound/right.mp3');
 let wrong = new Audio('./sound/wrong.mp3')
@@ -145,8 +146,10 @@ function checkLetter(key) {
 function winner() {
     if (currentWord === undefined){
     win.play();
-     document.querySelector(".wordToType").textContent = "YOU ARE THE WINNER"
+     document.querySelector(".wordToType").textContent = "~~CHECK YOUR SCORE~~"
     }
+    let levelButton = document.querySelector(".nextLevel")
+    levelButton.style.display = "block"
 }
 
 
@@ -155,4 +158,3 @@ function winner() {
 function pageReload() {
     window.location.reload();
 }
-
