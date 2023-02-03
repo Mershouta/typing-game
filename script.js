@@ -79,7 +79,7 @@ window.addEventListener('resize', function (e) {
 });
 size();
 
-let words = ["Sunlight", "Socket", "Grey", "Station", "Funk", "Cat", "Blurry", "Huge", "Incredible", "Borderline", "Husky", "Hexakosioihexekontahexaphobia", "A", "Attention", "Warning", "Lightning", "Reflexest"];
+let words = ["Sunlight", "Socket", "Grey", "Station", "Funk", "Cat", "Blurry", "Huge", "Incredible", "Borderline", "Husky", "Hexakosioihexekontahexaphobia", "A", "Attention", "Warning", "Lightning", "Reflexest", "hippopotomonstrosesquippedaliophobia"];
 let startButton = document.querySelector(".buttonStart")
 let currentWord = ""
 let buttonReload = document.querySelector(".reloadButton")
